@@ -10,6 +10,13 @@ load_dotenv()
 
 app = FastAPI(title="Physical AI Chatbot API")
 
+from dotenv import load_dotenv
+load_dotenv()  
+GEMINI_API_KEY = os.getenv("AIzaSyDL-17JvQ3nw4lsmj3Nh-6EAcNbM_4TixA")
+if not GEMINI_API_KEY:
+    print("❌ ERROR: GEMINI_API_KEY not found in environment variables")
+    print("Please set GEMINI_API_KEY in .env file or environment")
+    exit(1)
 # CORS setup
 app.add_middleware(
     CORSMiddleware,
@@ -20,7 +27,7 @@ app.add_middleware(
 )
 
 # Configure Gemini AI
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "your-api-key-here")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyDL-17JvQ3nw4lsmj3Nh-6EAcNbM_4TixA")
 genai.configure(api_key=GEMINI_API_KEY)
 
 # Model
